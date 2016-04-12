@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<math.h>
+#define true 1
+#define false 0
+#define M 
+
+int binary(int i){
+
+  // i = 7
+
+  while(i%2 != 0){
+   
+  }
+
+}
+
+int CheckPalindrome(int i){
+
+  int j = 0, hold, remainder;
+  hold = i;
+  
+  while(i != 0){
+    remainder = i%10;
+    j = j*10 + remainder;
+    i = i/10;
+  }
+
+  if(j == hold) return true;
+  else return false;
+
+}
+
+int main(){
+
+  int i = 737;
+
+  if(CheckPalindrome(i) == 1) printf("It is a palindrome\n");
+  else printf("It is not a palindrome\n");
+
+}

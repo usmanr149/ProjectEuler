@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int isPrime(int n){
+
+  int i, half=sqrt(n);
+  //printf("half = %lld\n n=%lld\n", half, n);
+
+  for(i=3; i<=half; i+=2){
+    if(n%i==0) return 0;
+  }return 1;
+
+}
+
+int main(){
+
+  int count = 1, i;
+  
+   for(i=3; i <= n; i+=2){
+    if(isPrime(i)==1){
+      count++;
+      if ( count = 10001 ){
+	printf("The %d is %d is a prime\n", count, i);
+	return 0;
+      }
+    }
+   }
+}

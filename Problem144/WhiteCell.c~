@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+
+
+double calculateintercept(doulble slope, double x, double y){
+  double intercept;
+  intercept= y-slope*x;
+  return intercept;
+}
+
+double calculateslope(double xi, double yi, double xf, double xy){
+  double slope = (yf-ui)/(xf-xi);
+  return slope;
+
+}
+
+int main(){
+
+  //c = ex^2+fy^2
+  double c, e = 4, f =1;
+  double m, b;
+
+  double x, y;
+
+  m = calculateslope(0.0, 10.1, 1.4, -9.6);
+  b = calculateintercept(m, 0.0, 10.1);
+
+  printf("m = %d\n", m);
+  printf("b = %d\n", b);
+}

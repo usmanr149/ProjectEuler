@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+
+int rotate(int a){
+  
+  int digits = log10((double)a);
+  int Multiplier = powl(10, (double)digits);
+
+  int hold = a%3;
+  
+  int b = hold*Multiplier + a/10;
+
+}
+
+int main(){
+
+  int a = 197;
+
+  rotate(a);
+
+}

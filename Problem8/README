@@ -1,0 +1,16 @@
+Solution: 
+The largest product of 13 adjacent numbers is 
+multiple = 23514624000
+array[0] = 5
+array[1] = 5
+array[2] = 7
+array[3] = 6
+array[4] = 6
+array[5] = 8
+array[6] = 9
+array[7] = 6
+array[8] = 6
+array[9] = 4
+array[10] = 8
+array[11] = 9
+array[12] = 5

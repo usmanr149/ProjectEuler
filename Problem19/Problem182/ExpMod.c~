@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include <math.h>
+
+int Midstep(int a, int b, int n){
+
+  int c;
+
+  if(b > 1){
+    c = powl(a, 2.0);
+    c = c%n;
+    c = c * Midstep(a, b-2 , n);
+  }
+  else{
+    if(b%2 == 1) c = a%n;
+    else{ c = powl(a, 2.0); 
+    c = c%n;
+    }
+  }
+  if(c > n) c=c%n;
+  return c;
+}
+
+int ModularExponentian(int a, int b, int n){
+
+  int c;
+  
+  if(b%2 == 1){
+    c = powl(a, 2.0);
+    c = c%n; 
+    
+    if(b > 2){
+      c = c*Midstep(a, b-2 , n);
+    }
+  }
+  
+  else c = Midstep(a, b-2 , n);
+  c = c%n;
+  printf("c = %d\n", c);
+  
+}
+
+int main(){
+
+  int a, b, c;
+  
+  a=1009;
+  b=3643;
+  c=13;
+
+  ModularExponentian(a, b ,c);
+
+}

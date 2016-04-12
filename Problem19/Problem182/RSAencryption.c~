@@ -1,0 +1,136 @@
+#include<stdio.h>
+#include <math.h>
+
+long long int gcd(long long int a, long long int b){
+  
+  long long int gcd, h;
+  
+  //need a>b, so switch if this not true
+  if(b>a){
+    h=a;
+    a=b;
+    b=h;
+  }
+  //Euclidean algorithm
+  if(a>b){
+    while(b != 0){
+      long long int hold = b;
+      b = a%b;
+      a = hold;
+    }
+    return a;
+  }
+}
+
+long long int midstep(long long int a, long long int m, long long int n){
+
+  long long int c;
+
+  //0. midstep(2,3,33) 
+  //1. midstep(2,1,33)
+  c = powl(a,2.0); //81
+  c = c%n; // 4
+
+  printf("c = %lld\n", c);
+  printf("a = %lld\n", a);
+  printf("m = %lld\n", m);
+  printf("n = %lld\n", n);
+  getchar();
+
+  if(m>2){
+    //1. c = 4 * midstep(2,1,33)
+    c = c * midstep(a,m-2,n);
+    c = c%n;
+  }
+  //m = 1
+  m = m%2; // 1
+  c = powl(a, (double)m);
+  return c;
+
+}
+
+long long int Exponentiation(long long int a, long long int m, long long int n){
+
+  // a = 2, m = 5, n = 33
+  //c = (a^m)%n
+  long long int c;
+
+  c = powl(a,2.0); //4
+  c = c%n; // 4
+
+  if(m>2){
+    c = c * midstep(a, m-2, n);
+  }
+  printf("c = %lld\n", c);
+  c = c%n;
+  //Exponentiation(a, b, n-2);
+
+  return c;
+
+}
+
+long long int EulerTotient(long long int a, long long int m, long long int n){
+
+  //a^(e mod tot(n)
+  long long int c;
+  long long int k = m%n; 
+    c = powl(a, (double)k);
+    c=c%n;
+  return c;
+
+}
+
+int main(){
+
+  long long int p, q, n, rho, e=3, gcdm = 0;
+  long long int message = 2;
+
+  p = 3;
+  q = 11;
+  
+  n= p*q;
+
+  long long int sag = Exponentiation(2,5,33); 
+  printf("sag = %lld\n", sag);
+  getchar();
+
+  rho = (p-1)*(q-1);
+  //printf("gcdm(4, 33) = %d\n", gcd(4,33));
+
+  while( (e < rho) && (gcdm!=1) ){
+    gcdm = gcd(e,n);
+    //printf("e = %d\n", e);
+    //printf("gcdm = %d\n", gcdm);
+    //getchar();
+    e++;
+  }
+
+  e = 7;
+
+  long long int d = 1;
+  while( ((d*e)%rho != 1) ){
+    d++;
+  }
+
+  printf("p = %lld\n", p);
+  printf("q = %lld\n", q);
+  printf("n = %lld\n", n);
+  printf("rho = %lld\n", rho);
+  printf("d = %lld\n", d);
+  printf("e = %lld\n", e);
+  //printf("private key is (%d, %d)\n", d, n);
+  printf("public key is (%lld, %lld)\n", e, n);
+  printf("private key is (%lld, %lld)\n", d, n);
+  long long int encrptedMess = Exponentiation(message, e, n);
+    //powl(2.0,(double)e); 
+    //encrptedMess = encrptedMess%n;
+  
+  printf("The encryption for m = %lld is c = 2^%lld mod %lld = %lld\n", message, e, n, encrptedMess);
+
+  long long int decryptedMess = Exponentiation(encrptedMess, d, n);
+  //powl(encrptedMess, (double)d);
+  //decryptedMess = decryptedMess%n;
+
+  printf("The decryption of c = %lld is m = %lld^%lld mod %lld = %lld\n", encrptedMess, encrptedMess, d, n, decryptedMess );
+
+}
